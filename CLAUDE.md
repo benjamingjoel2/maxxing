@@ -13,4 +13,8 @@ Culture-oriented trip planner. Next.js 16 App Router, TypeScript, Tailwind v4. N
   `setState`; the lint config rejects the latter.
 - Theme tokens are CSS variables in `src/app/globals.css`, mapped into Tailwind via `@theme
   inline`. Use the `paper`/`ink`/`accent` colour names rather than raw Tailwind colours.
+- The site is a static export (`output: "export"`). Pages must not read `searchParams` on the
+  server; read the query string in a client component with `useSearchParams` inside `<Suspense>`
+  (see `destinations-catalog.tsx`, `experiences-explorer.tsx`, `trip-planner.tsx`). Metadata
+  routes (sitemap, opengraph-image) need `export const dynamic = "force-static"`.
 - Before pushing: `npm run check && npm run build`.

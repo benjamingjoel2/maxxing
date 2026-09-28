@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { destinations, getDestination } from "@/data/destinations";
 import { formatHours, pluralize } from "@/lib/format";
 import { buildItinerary, MAX_DAYS, MIN_DAYS, slotsPerDay, totalHours } from "@/lib/itinerary";
-import { planToQuery } from "@/lib/plan-params";
+import { parsePlan, planToQuery } from "@/lib/plan-params";
 import { addTripAndNotify, newTripId } from "@/lib/storage";
 import { INTERESTS, INTEREST_LABELS, type Interest, type Pace, type TripPlan } from "@/lib/types";
 import { InterestBadge } from "./interest-badge";
@@ -232,4 +233,12 @@ export function TripPlanner({ initialPlan }: { initialPlan: TripPlan }) {
       </section>
     </div>
   );
+}
+
+/** Reads the plan from the query string; must sit inside a Suspense boundary. */
+export function TripPlannerFromQuery() {
+  const params = useSearchParams();
+  const plan = parsePlan(Object.fromEntries(params.entries()), destinations[0].slug);
+  // Re-mount when the destination in the URL changes (e.g. "Edit in planner" from a saved trip).
+  return <TripPlanner key={plan.destinationSlug} initialPlan={plan} />;
 }

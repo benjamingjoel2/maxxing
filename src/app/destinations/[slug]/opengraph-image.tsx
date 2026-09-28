@@ -2,6 +2,7 @@ import { ImageResponse } from "next/og";
 import { destinations, getDestination } from "@/data/destinations";
 import { INTEREST_LABELS } from "@/lib/types";
 
+export const dynamic = "force-static";
 export const alt = "A Maxxing destination guide";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
