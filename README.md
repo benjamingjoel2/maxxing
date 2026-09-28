@@ -7,9 +7,11 @@ never sends you to two museums in a row.
 
 ## What's inside
 
-- **8 curated destinations** (Kyoto, Mexico City, Lisbon, Istanbul, Vienna, Marrakech, Buenos
-  Aires, Seoul), each with 14 to 16 hand-written cultural experiences, etiquette notes and best
-  months to visit. Data lives in `src/data/destinations/`.
+- **12 curated destinations** (Kyoto, Mexico City, Lisbon, Istanbul, Vienna, Marrakech, Buenos
+  Aires, Seoul, Naples, Oaxaca, Tbilisi, Hanoi), each with 14 to 16 hand-written cultural
+  experiences, etiquette notes and best months to visit. Data lives in `src/data/destinations/`
+  and is checked by `src/data/destinations.test.ts` (unique ids, every strength served, morning /
+  afternoon / evening coverage, and so on).
 - **A deterministic itinerary generator** (`src/lib/itinerary.ts`): scores experiences against the
   traveller's interests and the city's strengths, anchors each day on the best remaining match,
   then fills slots preferring the same neighbourhood and a different kind of activity. Covered by
@@ -18,9 +20,12 @@ never sends you to two museums in a row.
   - `/` landing page
   - `/destinations` catalogue, re-ranked by interest via `?interests=art,food`
   - `/destinations/[slug]` city guide with all experiences and culture notes
+  - `/experiences` every experience across every city, filtered by thread and kind
   - `/plan` live trip planner; the plan is encoded in the URL so it can be shared
   - `/trips` trips saved in the browser (localStorage), expandable and editable
 - Light and dark themes, responsive layout, no client-side data fetching.
+- Generated Open Graph images for the site and each city, and print styles so an itinerary comes
+  out clean on paper.
 
 ## Stack
 

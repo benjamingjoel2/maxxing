@@ -8,7 +8,7 @@ import { INTERESTS, INTEREST_LABELS } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "Destinations",
-  description: "Eight cities chosen for living culture, ranked by the threads you care about.",
+  description: "Cities chosen for living culture, ranked by the threads you care about.",
 };
 
 export default async function DestinationsPage({

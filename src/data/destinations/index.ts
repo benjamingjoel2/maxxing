@@ -1,12 +1,16 @@
-import type { Destination, Interest } from "@/lib/types";
-import { buenosAires } from "./buenos-aires";
-import { istanbul } from "./istanbul";
-import { kyoto } from "./kyoto";
-import { lisbon } from "./lisbon";
-import { marrakech } from "./marrakech";
-import { mexicoCity } from "./mexico-city";
-import { seoul } from "./seoul";
-import { vienna } from "./vienna";
+import type { Destination, Experience, Interest } from "@/lib/types";
+import { buenosAires } from "./buenos-aires.ts";
+import { hanoi } from "./hanoi.ts";
+import { istanbul } from "./istanbul.ts";
+import { kyoto } from "./kyoto.ts";
+import { lisbon } from "./lisbon.ts";
+import { marrakech } from "./marrakech.ts";
+import { naples } from "./naples.ts";
+import { oaxaca } from "./oaxaca.ts";
+import { mexicoCity } from "./mexico-city.ts";
+import { seoul } from "./seoul.ts";
+import { tbilisi } from "./tbilisi.ts";
+import { vienna } from "./vienna.ts";
 
 export const destinations: Destination[] = [
   kyoto,
@@ -17,6 +21,10 @@ export const destinations: Destination[] = [
   marrakech,
   buenosAires,
   seoul,
+  naples,
+  oaxaca,
+  tbilisi,
+  hanoi,
 ];
 
 export function getDestination(slug: string): Destination | undefined {
@@ -39,4 +47,16 @@ export function rankDestinations(interests: Interest[]): Destination[] {
     })
     .sort((a, b) => b.score - a.score)
     .map(({ d }) => d);
+}
+
+export interface ExperienceWithCity {
+  experience: Experience;
+  destination: Destination;
+}
+
+/** Every experience across every city, in curated order. */
+export function allExperiences(): ExperienceWithCity[] {
+  return destinations.flatMap((destination) =>
+    destination.experiences.map((experience) => ({ experience, destination })),
+  );
 }
