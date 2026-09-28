@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { TripPlanner } from "@/components/trip-planner";
+import { Suspense } from "react";
+import { TripPlanner, TripPlannerFromQuery } from "@/components/trip-planner";
 import { destinations } from "@/data/destinations";
-import { parsePlan, type SearchParams } from "@/lib/plan-params";
 
 export const metadata: Metadata = {
   title: "Plan a trip",
   description: "Choose a city, your interests and a pace. Get a day-by-day cultural itinerary.",
 };
 
-export default async function PlanPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
-  const plan = parsePlan(await searchParams, destinations[0].slug);
+export default function PlanPage() {
+  const fallback = { destinationSlug: destinations[0].slug, days: 3, interests: [], pace: "steady" as const };
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
@@ -22,7 +22,10 @@ export default async function PlanPage({ searchParams }: { searchParams: Promise
           The plan updates as you change things. Save it to this browser or copy the link to share.
         </p>
       </div>
-      <TripPlanner key={plan.destinationSlug} initialPlan={plan} />
+      {/* A default plan is prerendered; the one encoded in the URL takes over on the client. */}
+      <Suspense fallback={<TripPlanner key="fallback" initialPlan={fallback} />}>
+        <TripPlannerFromQuery />
+      </Suspense>
     </div>
   );
 }

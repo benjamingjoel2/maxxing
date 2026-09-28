@@ -30,7 +30,8 @@ never sends you to two museums in a row.
 ## Stack
 
 Next.js 16 (App Router, Turbopack), React 19, TypeScript, Tailwind CSS v4. No database and no
-external APIs: everything is static content plus browser storage.
+external APIs: everything is static content plus browser storage, so the site builds to plain
+static files (`output: "export"`) and can be hosted on any static host or CDN.
 
 ## Develop
 
@@ -46,8 +47,15 @@ npm run typecheck  # tsc
 npm run lint       # eslint (next/core-web-vitals + typescript)
 npm test           # node --test, runs src/**/*.test.ts natively
 npm run check      # all three
-npm run build      # production build
+npm run build      # static build into out/
+npm start          # serve out/ locally (uses `serve` via npx)
 ```
+
+## Deploy
+
+`npm run build` writes the whole site to `out/`. Upload that folder to any static host. To host
+under a sub-path (for example `https://example.com/maxxing/`), set `NEXT_PUBLIC_BASE_PATH=/maxxing`
+at build time; links and assets are prefixed automatically.
 
 ## Adding a destination
 
@@ -59,4 +67,5 @@ npm run build      # production build
 
 ## Configuration
 
-`NEXT_PUBLIC_SITE_URL` sets the base URL used in `sitemap.xml`. It defaults to a placeholder.
+- `NEXT_PUBLIC_SITE_URL` sets the base URL used in `sitemap.xml`. It defaults to a placeholder.
+- `NEXT_PUBLIC_BASE_PATH` hosts the build under a sub-path (see Deploy). Unset by default.
