@@ -3,6 +3,7 @@ import { ThemeToggle } from "./theme-toggle";
 
 const NAV = [
   { href: "/destinations", label: "Destinations" },
+  { href: "/experiences", label: "Explore" },
   { href: "/plan", label: "Plan a trip" },
   { href: "/trips", label: "My trips" },
 ] as const;

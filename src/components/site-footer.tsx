@@ -12,6 +12,7 @@ export function SiteFooter() {
         </div>
         <div className="flex flex-wrap gap-x-6 gap-y-2">
           <Link href="/destinations" className="hover:text-ink">Destinations</Link>
+          <Link href="/experiences" className="hover:text-ink">Explore</Link>
           <Link href="/plan" className="hover:text-ink">Plan a trip</Link>
           <Link href="/trips" className="hover:text-ink">My trips</Link>
         </div>

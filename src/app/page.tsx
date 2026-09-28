@@ -8,7 +8,7 @@ import { INTERESTS } from "@/lib/types";
 const STEPS = [
   {
     title: "Pick a city that makes things",
-    body: "Eight destinations chosen for living culture: places where the craft, the music and the cooking are still practised, not just displayed.",
+    body: "Every destination is chosen for living culture: places where the craft, the music and the cooking are still practised, not just displayed.",
   },
   {
     title: "Tell us what you go for",
@@ -91,14 +91,14 @@ export default function HomePage() {
       <Section
         eyebrow="Threads"
         title="Follow the thread you care about."
-        description="Every experience is tagged by the kind of culture it belongs to. Start from a thread to see which cities do it best."
+        description="Every experience is tagged by the kind of culture it belongs to. Start from a thread to see every match across every city."
         className="pt-0 sm:pt-0"
       >
         <div className="flex flex-wrap gap-2">
           {INTERESTS.map((interest) => (
             <Link
               key={interest}
-              href={`/destinations?interests=${interest}`}
+              href={`/experiences?interests=${interest}`}
               className="rounded-full transition hover:-translate-y-0.5"
             >
               <InterestBadge interest={interest} size="md" />

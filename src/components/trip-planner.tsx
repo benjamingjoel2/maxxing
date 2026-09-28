@@ -74,9 +74,9 @@ export function TripPlanner({ initialPlan }: { initialPlan: TripPlan }) {
   }
 
   return (
-    <div className="grid gap-10 lg:grid-cols-[minmax(0,380px)_1fr]">
+    <div className="print-full grid gap-10 lg:grid-cols-[minmax(0,380px)_1fr]">
       <form
-        className="flex flex-col gap-8 lg:sticky lg:top-24 lg:self-start"
+        className="print-hidden flex flex-col gap-8 lg:sticky lg:top-24 lg:self-start"
         onSubmit={(e) => e.preventDefault()}
       >
         <fieldset className="flex flex-col gap-2">
@@ -191,6 +191,13 @@ export function TripPlanner({ initialPlan }: { initialPlan: TripPlan }) {
             >
               {copied ? "Link copied" : "Copy link"}
             </button>
+            <button
+              type="button"
+              onClick={() => window.print()}
+              className="inline-flex items-center rounded-full border border-line px-5 py-2.5 text-sm font-semibold transition hover:border-ink-3"
+            >
+              Print
+            </button>
           </div>
           {saved && (
             <p className="text-sm text-ink-2" role="status">
@@ -216,7 +223,7 @@ export function TripPlanner({ initialPlan }: { initialPlan: TripPlan }) {
           </p>
         </header>
         {stops < capacity && (
-          <p className="mb-6 rounded-xl border border-line bg-paper-2/60 p-4 text-sm text-ink-2">
+          <p className="print-hidden mb-6 rounded-xl border border-line bg-paper-2/60 p-4 text-sm text-ink-2">
             We ran out of experiences matching this plan before filling every slot. Shorten the trip, ease
             the pace, or treat the gaps as time to wander.
           </p>

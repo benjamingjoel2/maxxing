@@ -67,13 +67,20 @@ export function SavedTrips() {
               </summary>
               <div className="border-t border-line p-5 sm:p-6">
                 <ItineraryView days={trip.itinerary} />
-                <div className="mt-6 flex flex-wrap gap-3">
+                <div className="print-hidden mt-6 flex flex-wrap gap-3">
                   <Link
                     href={`/plan?${planToQuery(trip)}`}
                     className="inline-flex items-center rounded-full border border-line px-5 py-2.5 text-sm font-semibold hover:border-ink-3"
                   >
                     Edit in planner
                   </Link>
+                  <button
+                    type="button"
+                    onClick={() => window.print()}
+                    className="inline-flex items-center rounded-full border border-line px-5 py-2.5 text-sm font-semibold hover:border-ink-3"
+                  >
+                    Print
+                  </button>
                   <button
                     type="button"
                     onClick={() => removeTripAndNotify(trip.id)}

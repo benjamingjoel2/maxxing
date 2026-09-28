@@ -95,3 +95,27 @@ body {
     animation-duration: 0.01ms !important;
   }
 }
+
+/* Print: itineraries should come out clean on paper. */
+@media print {
+  body > header,
+  body > footer,
+  .print-hidden {
+    display: none !important;
+  }
+  body {
+    background: white;
+    color: black;
+  }
+  .print-full {
+    grid-template-columns: 1fr !important;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  li,
+  article {
+    break-inside: avoid;
+  }
+}
